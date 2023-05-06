@@ -15,16 +15,34 @@ canvas {
   width: 100%;
   height: 100%;
 }
-iframe {
-  visibility: hidden;
-  opacity: 0;
+audio {
   position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#play {
+  font-size: 48px;
+  color: rgba(255,255,255,0.5);
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 </style>
 </head>
 <body>
-<iframe src="https://www.youtube.com/embed/XtLvlaGJJEU?autoplay=1&loop=1&playlist=XtLvlaGJJEU"></iframe>
+  <audio id="song" loop autoplay onplay="javascript:document.getElementById('play').remove()" src="slayer.mp3"></audio>
+  <div id="play">&#9654;</div>
+
 <script>
+
+  var song = document.getElementById('song');
+  document.body.addEventListener('click', function() {
+    song.play();
+  });
+  document.body.addEventListener('touchstart', function() {
+    song.play();
+  });
 
 w = 1024, h = 768;
 var renderer = new PIXI.WebGLRenderer(w, h);
